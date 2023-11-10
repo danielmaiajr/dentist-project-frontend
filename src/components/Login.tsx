@@ -1,35 +1,25 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
-import axios from "../api/axios";
-const LOGIN_URL = "/api/users/login";
+import auth from "../auth/axios";
+
+import { login } from "../context/AuthSlice";
+import { useAppDispatch } from "../hooks";
 
 const Login = () => {
-  const context = useAuth();
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const response = await auth.login(email, password);
 
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      context?.contextHandler(true, response.data.token);
-      navigate("/");
-
-      //console.log(JSON.stringify(response));
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(login(response?.data?.token));
+    navigate("/");
   };
 
   return (

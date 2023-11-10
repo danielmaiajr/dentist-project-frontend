@@ -3,9 +3,17 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
 
 import RequireAuth from "./components/RequireAuth";
-import Home from "./components/Home";
+
+import { store } from "./context/store.ts";
+import { login } from "./context/AuthSlice";
+
+const token = localStorage.getItem("token");
+if (token) {
+  store.dispatch(login(token));
+}
 
 const App = () => {
   return (

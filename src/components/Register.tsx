@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-import useAuth from "../hooks/useAuth";
-
-import axios from "../api/axios";
-const REGISTER_URL = "/api/users";
+import auth from "../auth/axios";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,20 +8,7 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        REGISTER_URL,
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-    } catch (err) {
-      console.error(err);
-    }
+    auth.signup(email, password);
   };
 
   return (
