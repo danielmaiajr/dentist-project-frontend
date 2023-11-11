@@ -1,16 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "./components/Layout";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
 
-import RequireAuth from "./components/RequireAuth";
+import RequireAuth from "./components/auth/RequireAuth.tsx";
+import PuclicAuth from "./components/auth/PublicAuth.tsx";
 
 import { store } from "./context/store.ts";
 import { login } from "./context/AuthSlice";
 
 import "./index.css";
+import PatientPage from "./components/PatientPage.tsx";
+import SchedulerPage from "./components/SchedulerPage.tsx";
+
 const token = localStorage.getItem("token");
 if (token) {
   store.dispatch(login(token));
@@ -19,14 +22,17 @@ if (token) {
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* public routes */}
+      {/* public routes */}
+      <Route element={<PuclicAuth />}>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+      </Route>
 
-        {/* private routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="/" element={<Home />} />
+      {/* private routes */}
+      <Route element={<RequireAuth />}>
+        <Route path="/" element={<Home />}>
+          <Route path="/patients" element={<PatientPage />}></Route>
+          <Route path="/scheduler" element={<SchedulerPage />}></Route>
         </Route>
       </Route>
     </Routes>
