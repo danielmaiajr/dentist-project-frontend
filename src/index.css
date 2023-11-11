@@ -70,7 +70,11 @@
   * {
     @apply border-border;
   }
+  #root {
+    height: 100%;
+  }
   body {
+    height: 100vh;
     @apply bg-background text-foreground;
   }
 }
