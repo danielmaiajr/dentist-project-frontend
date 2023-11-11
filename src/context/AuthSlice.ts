@@ -23,6 +23,7 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.validToken = false;
       state.token = "";
+      localStorage.removeItem("token");
     },
   },
 });
