@@ -10,6 +10,7 @@ import RequireAuth from "./components/RequireAuth";
 import { store } from "./context/store.ts";
 import { login } from "./context/AuthSlice";
 
+import "./index.css";
 const token = localStorage.getItem("token");
 if (token) {
   store.dispatch(login(token));
