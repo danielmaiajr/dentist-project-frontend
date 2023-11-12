@@ -4,6 +4,7 @@ import authSlice from "./AuthSlice";
 import userSlice from "./UserSlice";
 import patientSlice from "./PatientSlice";
 import dentistSlice from "./DentistSlice";
+import appointmentSlice from "./AppointmentSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     user: userSlice,
     patient: patientSlice,
     dentist: dentistSlice,
+    appointment: appointmentSlice,
   },
 });
 
