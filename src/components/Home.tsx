@@ -18,7 +18,7 @@ const Home = () => {
       <NavBar title={title} />
       <div className="grid lg:grid-cols-5 xl:grid-cols-6 h-full">
         <Sidebar />
-        <div className="col-span-3 lg:col-span-4 ">
+        <div className="lg:col-span-4 xl:col-span-5">
           <Outlet />
         </div>
       </div>
