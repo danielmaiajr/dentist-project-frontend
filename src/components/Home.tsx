@@ -6,6 +6,7 @@ import { Sidebar } from "./SideBar";
 
 import { useAppDispatch } from "@/hooks";
 import { getAllUsers } from "@/context/users/users.slice";
+import { getAllInsurances } from "@/context/insurances/insurances.slice";
 
 const Home = () => {
   const location = useLocation();
@@ -16,6 +17,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(getAllUsers());
+      dispatch(getAllInsurances());
     };
 
     fetchData();
@@ -24,6 +26,8 @@ const Home = () => {
   useEffect(() => {
     if (location.pathname == "/patients") setTitle("Pacientes");
     if (location.pathname == "/scheduler") setTitle("Agenda");
+    if (location.pathname == "/config") setTitle("Equipe");
+    if (location.pathname == "/insurance") setTitle("Planos de Saúde");
   }, [location]);
 
   return (
