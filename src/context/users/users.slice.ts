@@ -93,7 +93,7 @@ const usersSlice = createSlice({
       if (action.payload) {
         const user = state.find((user) => user.id === action.payload.id);
 
-        if (user) user.email = action.payload.name;
+        if (user) user.name = action.payload.name;
       }
     });
   },
