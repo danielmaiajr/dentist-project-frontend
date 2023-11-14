@@ -13,6 +13,7 @@ import { login } from "./context/AuthSlice";
 import "./index.css";
 import PatientPage from "./components/PatientPage.tsx";
 import SchedulerPage from "./components/SchedulerPage.tsx";
+import ConfigPage from "./components/ConfigPage.tsx";
 
 const token = localStorage.getItem("token");
 if (token) {
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/" element={<Home />}>
           <Route path="/patients" element={<PatientPage />}></Route>
           <Route path="/scheduler" element={<SchedulerPage />}></Route>
+          <Route path="/config" element={<ConfigPage />}></Route>
         </Route>
       </Route>
     </Routes>
