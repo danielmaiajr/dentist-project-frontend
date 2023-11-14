@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+
 import { NavBar } from "./NavBar";
 import { Sidebar } from "./SideBar";
-import { Outlet, useLocation } from "react-router-dom";
+
+import { useAppDispatch } from "@/hooks";
+import { getAllUsers } from "@/context/users/users.slice";
 
 const Home = () => {
   const location = useLocation();
 
   const [title, setTitle] = useState("");
+
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(getAllUsers());
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     if (location.pathname == "/patients") setTitle("Pacientes");
