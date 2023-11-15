@@ -1,14 +1,7 @@
-import { getAllPatients } from "@/context/PatientSlice";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { useEffect } from "react";
+import { useAppSelector } from "@/hooks";
 
 const PatientPage = () => {
-  const dispatch = useAppDispatch();
-  const patients = useAppSelector((state) => state.patient.patients);
-
-  useEffect(() => {
-    dispatch(getAllPatients());
-  }, []);
+  const patients = useAppSelector((state) => state.patients);
 
   return (
     <div className="w-full px-10 py-5">
