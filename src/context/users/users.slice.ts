@@ -61,6 +61,23 @@ export const getAllUsers = createAsyncThunk<
   } catch (err) {}
 });
 
+export const getUserById = createAsyncThunk<
+  UserState,
+  undefined,
+  { state: RootState }
+>("users/getUserById", async (data, { getState }) => {
+  const state = getState();
+
+  try {
+    const user = await axios.get(
+      BASE_URL + API_URL + "/",
+      getAuthConfig(state.auth.token)
+    );
+
+    return user.data;
+  } catch (err) {}
+});
+
 export const putUserById = createAsyncThunk<
   UserState,
   PutUserByIdType,
@@ -88,6 +105,9 @@ const usersSlice = createSlice({
     });
     builder.addCase(createUser.fulfilled, (state, action) => {
       if (action.payload) state.push(action.payload);
+    });
+    builder.addCase(getUserById.fulfilled, (state, action) => {
+      return;
     });
     builder.addCase(putUserById.fulfilled, (state, action) => {
       if (action.payload) {
