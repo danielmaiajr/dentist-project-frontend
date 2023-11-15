@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { User, Users, Calendar, Umbrella } from "lucide-react";
+import { User, Users, Calendar, Umbrella, Building2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
@@ -71,6 +71,18 @@ export const Sidebar = () => {
           >
             <Umbrella className="mr-2 h-4 w-4" />
             Planos de Saúde
+          </Link>
+          <Link
+            to="/clinic"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/clinic"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Building2 className="mr-2 h-4 w-4" />
+            Clínica
           </Link>
         </div>
       </div>

@@ -32,6 +32,7 @@ const Home = () => {
     if (location.pathname == "/scheduler") setTitle("Agenda");
     if (location.pathname == "/config") setTitle("Equipe");
     if (location.pathname == "/insurance") setTitle("Planos de Saúde");
+    if (location.pathname == "/clinic") setTitle("Clínica");
   }, [location]);
 
   return (
