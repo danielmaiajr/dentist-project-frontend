@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import auth from "../auth/axios";
-
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+import { useAppDispatch } from "@/hooks";
+import { createClinic } from "@/context/clinics/clinics.slice";
+
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -18,7 +20,7 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password === confirmPwd) {
-      auth.signup(email, password);
+      await dispatch(createClinic({ email, password }));
       navigate("/login");
     }
   };
