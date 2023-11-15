@@ -13,10 +13,24 @@ import { LogOut, Pencil } from "lucide-react";
 
 import { useAppDispatch } from "@/hooks";
 import { logout } from "@/context/AuthSlice";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getUserById } from "@/context/users/users.slice";
 
 export const NavBar = ({ title }: { title: string }) => {
   const dispatch = useAppDispatch();
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = await dispatch(getUserById());
+      console.log(user);
+      setEmail(user.payload.email);
+      setName(user.payload.name);
+    };
+
+    fetchData();
+  }, []);
 
   const handleLogout = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -30,6 +44,7 @@ export const NavBar = ({ title }: { title: string }) => {
         {title}
       </div>
       <div className="ml-auto flex items-center space-x-4">
+        <div className="flex items-center space-x-4 font-medium">{name}</div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -41,9 +56,9 @@ export const NavBar = ({ title }: { title: string }) => {
           <DropdownMenuContent className="w-56" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">Daniel</p>
+                <p className="text-sm font-medium leading-none">{name}</p>
                 <p className="text-xs leading-none text-muted-foreground">
-                  daniel@gmail.com
+                  {email}
                 </p>
               </div>
             </DropdownMenuLabel>
