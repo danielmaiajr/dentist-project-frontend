@@ -7,6 +7,7 @@ import { Sidebar } from "./SideBar";
 import { useAppDispatch } from "@/hooks";
 import { getAllUsers } from "@/context/users/users.slice";
 import { getAllInsurances } from "@/context/insurances/insurances.slice";
+import { getAllPatients } from "@/context/patients/patients.slice";
 
 const Home = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       dispatch(getAllUsers());
+      dispatch(getAllPatients());
       dispatch(getAllInsurances());
     };
 
