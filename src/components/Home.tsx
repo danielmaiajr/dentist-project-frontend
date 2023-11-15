@@ -8,15 +8,17 @@ import { useAppDispatch } from "@/hooks";
 import { getAllUsers } from "@/context/users/users.slice";
 import { getAllInsurances } from "@/context/insurances/insurances.slice";
 import { getAllPatients } from "@/context/patients/patients.slice";
+import { getClinic } from "@/context/clinics/clinics.slice";
 
 const Home = () => {
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
   const [title, setTitle] = useState("");
 
-  const dispatch = useAppDispatch();
   useEffect(() => {
     const fetchData = async () => {
+      dispatch(getClinic());
       dispatch(getAllUsers());
       dispatch(getAllPatients());
       dispatch(getAllInsurances());
