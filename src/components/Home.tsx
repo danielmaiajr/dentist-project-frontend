@@ -10,6 +10,7 @@ import { getAllInsurances } from "@/context/insurances/insurances.slice";
 import { getAllPatients } from "@/context/patients/patients.slice";
 import { getClinic } from "@/context/clinics/clinics.slice";
 import { getUserById } from "@/context/user/user.slice";
+import { getAllAppointments } from "@/context/appointments/appointment.slice";
 
 const Home = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const Home = () => {
       dispatch(getUserById());
       dispatch(getAllUsers());
       dispatch(getAllPatients());
+      dispatch(getAllAppointments());
       dispatch(getAllInsurances());
     };
 
