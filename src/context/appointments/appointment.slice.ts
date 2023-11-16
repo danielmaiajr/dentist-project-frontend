@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { RootState } from "../store";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3333";
