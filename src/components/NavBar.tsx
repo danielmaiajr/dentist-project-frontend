@@ -11,26 +11,13 @@ import {
 
 import { LogOut, Pencil } from "lucide-react";
 
-import { useAppDispatch } from "@/hooks";
-import { logout } from "@/context/AuthSlice";
-import React, { useEffect, useState } from "react";
-import { getUserById } from "@/context/users/users.slice";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { logout } from "@/context/auth/auth.slice";
+import React from "react";
 
 export const NavBar = ({ title }: { title: string }) => {
   const dispatch = useAppDispatch();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const user = await dispatch(getUserById());
-      console.log(user);
-      setEmail(user.payload.email);
-      setName(user.payload.name);
-    };
-
-    fetchData();
-  }, []);
+  const user = useAppSelector((state) => state.user);
 
   const handleLogout = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -44,21 +31,23 @@ export const NavBar = ({ title }: { title: string }) => {
         {title}
       </div>
       <div className="ml-auto flex items-center space-x-4">
-        <div className="flex items-center space-x-4 font-medium">{name}</div>
+        <div className="flex items-center space-x-4 font-medium">
+          {user.name}
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
               <Avatar className="h-8 w-8">
-                <AvatarFallback>D</AvatarFallback>
+                <AvatarFallback>{user.name?.charAt(0)}</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56" align="end" forceMount>
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">{name}</p>
+                <p className="text-sm font-medium leading-none">{user.name}</p>
                 <p className="text-xs leading-none text-muted-foreground">
-                  {email}
+                  {user.email}
                 </p>
               </div>
             </DropdownMenuLabel>
