@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { z } from "zod";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
@@ -24,6 +25,124 @@ import { Input } from "./ui/input";
 import { PlusCircleIcon, Pencil } from "lucide-react";
 import { Separator } from "./ui/separator";
 
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  Row,
+} from "@tanstack/react-table";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+type PatientType = {
+  id: number;
+  name: string;
+};
+
+interface DataTableProps<TData, TValue> {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+}
+
+interface DataTableRowActionsProps<TData> {
+  row: Row<TData>;
+}
+export const taskSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+});
+
+export function DataTableRowActions<TData>({
+  row,
+}: DataTableRowActionsProps<TData>) {}
+const columns: ColumnDef<PatientType>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+    cell: ({ row }) => <div className="w-1">#{row.getValue("id")}</div>,
+  },
+
+  {
+    accessorKey: "name",
+    header: "Nome",
+    cell: ({ row }) => (
+      <div className="flex space-x-2 font-medium">{row.getValue("name")}</div>
+    ),
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      const task = taskSchema.parse(row.original);
+      return <Patient key={task.id} patient={task} />;
+    },
+  },
+];
+
+function DataTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
+  return (
+    <div className="rounded-md border">
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className="py-1">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
+  );
+}
 const Patient = ({ patient }: any) => {
   const dispatch = useAppDispatch();
 
@@ -38,17 +157,16 @@ const Patient = ({ patient }: any) => {
   };
 
   return (
-    <div key={patient.id} className="flex items-center text-sm">
+    <div className="flex items-center text-sm">
       <Dialog open={open} onOpenChange={setOpen}>
-        <div>{JSON.stringify(patient)}</div>
         <DialogTrigger asChild className="ml-auto">
-          <Button variant="ghost">
-            <Pencil className="h-4 w-4" />
+          <Button variant="ghost" className="p-2 h-8">
+            <Pencil className="h-4 w-4 text-zinc-600" />
           </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Adicionar paciente</DialogTitle>
+            <DialogTitle>Editar paciente</DialogTitle>
             <DialogDescription>Clique salvar ao concluir</DialogDescription>
           </DialogHeader>
           <div className="flex items-center py-2">
@@ -129,13 +247,9 @@ const PatientPage = () => {
         </Dialog>
       </div>
 
-      <Separator className="my-4" />
+      <Separator className="my-5" />
 
-      <div className="w-full">
-        {patients.map((p) => (
-          <Patient key={p.id} patient={p}></Patient>
-        ))}
-      </div>
+      <DataTable columns={columns} data={patients} />
     </div>
   );
 };
