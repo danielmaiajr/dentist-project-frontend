@@ -5,50 +5,47 @@ import axios from "axios";
 const BASE_URL = "http://localhost:3333";
 const API_URL = "/api/appointments";
 
-export interface AppointmentState {
-  id: Number;
-  patientId: Number;
-  dentistId: Number;
-}
-
-const initialState: AppointmentState = {
-  id: 0,
-  patientId: 0,
-  dentistId: 0,
+const getAuthConfig = (token: string) => {
+  return { headers: { Authorization: `Bearer ${token}` } };
 };
 
-export const getAppointmentById = createAsyncThunk<
-  AppointmentState,
-  Number,
+export interface AppointmentState {
+  id: number;
+  status?: string;
+  clinicId: number;
+  patientId: number;
+  userId: number;
+  insuranceId: number;
+}
+
+const initialState: AppointmentState[] = [];
+
+export const getAllAppointments = createAsyncThunk<
+  AppointmentState[],
+  undefined,
   { state: RootState }
->("appointment/getAppointmentById", async (appointmentId, { getState }) => {
+>("appointments/getAllAppointments", async (args, { getState }) => {
   const state = getState();
-  const config = {
-    headers: { Authorization: `Bearer ${state.auth.token}` },
-  };
+
   try {
-    const appointment = await axios.get(
-      BASE_URL + API_URL + "/" + appointmentId,
-      config
+    const appointments = await axios.get(
+      BASE_URL + API_URL + "/",
+      getAuthConfig(state.auth.token)
     );
-    return appointment.data;
-  } catch (error) {
-    console.error(error);
-    return {};
-  }
+
+    return appointments.data;
+  } catch (error) {}
 });
 
-const appointmentSlice = createSlice({
-  name: "appointment",
+const appointmentsSlice = createSlice({
+  name: "appointments",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAppointmentById.fulfilled, (state, action) => {
-      state.id = action.payload.id;
-      state.patientId = action.payload.patientId;
-      state.dentistId = action.payload.dentistId;
+    builder.addCase(getAllAppointments.fulfilled, (state, action) => {
+      return action.payload;
     });
   },
 });
 
-export default appointmentSlice.reducer;
+export default appointmentsSlice.reducer;
