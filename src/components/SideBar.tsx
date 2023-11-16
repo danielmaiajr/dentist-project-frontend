@@ -25,6 +25,7 @@ export const Sidebar = () => {
               className={cn(
                 buttonVariants({
                   variant: getButtonVariant("/patients"),
+                  
                 }),
                 "w-full justify-start"
               )}
@@ -45,45 +46,48 @@ export const Sidebar = () => {
               Agenda
             </Link>
           </div>
+
           <h2 className="my-2 px-4 text-lg font-semibold tracking-tight">
             Configurações
           </h2>
-          <Link
-            to="/config"
-            className={cn(
-              buttonVariants({
-                variant: getButtonVariant("/config"),
-              }),
-              "w-full justify-start"
-            )}
-          >
-            <Users className="mr-2 h-4 w-4" />
-            Equipe
-          </Link>
-          <Link
-            to="/insurance"
-            className={cn(
-              buttonVariants({
-                variant: getButtonVariant("/insurance"),
-              }),
-              "w-full justify-start"
-            )}
-          >
-            <Umbrella className="mr-2 h-4 w-4" />
-            Planos de Saúde
-          </Link>
-          <Link
-            to="/clinic"
-            className={cn(
-              buttonVariants({
-                variant: getButtonVariant("/clinic"),
-              }),
-              "w-full justify-start"
-            )}
-          >
-            <Building2 className="mr-2 h-4 w-4" />
-            Clínica
-          </Link>
+          <div className="space-y-1">
+            <Link
+              to="/config"
+              className={cn(
+                buttonVariants({
+                  variant: getButtonVariant("/config"),
+                }),
+                "w-full justify-start"
+              )}
+            >
+              <Users className="mr-2 h-4 w-4" />
+              Equipe
+            </Link>
+            <Link
+              to="/insurance"
+              className={cn(
+                buttonVariants({
+                  variant: getButtonVariant("/insurance"),
+                }),
+                "w-full justify-start"
+              )}
+            >
+              <Umbrella className="mr-2 h-4 w-4" />
+              Planos de Saúde
+            </Link>
+            <Link
+              to="/clinic"
+              className={cn(
+                buttonVariants({
+                  variant: getButtonVariant("/clinic"),
+                }),
+                "w-full justify-start"
+              )}
+            >
+              <Building2 className="mr-2 h-4 w-4" />
+              Clínica
+            </Link>
+          </div>
         </div>
       </div>
     </div>
