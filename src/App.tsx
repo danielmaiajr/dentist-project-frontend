@@ -8,7 +8,7 @@ import RequireAuth from "./components/auth/RequireAuth.tsx";
 import PuclicAuth from "./components/auth/PublicAuth.tsx";
 
 import { store } from "./context/store.ts";
-import { login } from "./context/AuthSlice";
+import { setToken } from "./context/auth/auth.slice.ts";
 
 import "./index.css";
 import PatientPage from "./components/PatientPage.tsx";
@@ -19,7 +19,7 @@ import ClinicPage from "./components/ClinicPage.tsx";
 
 const token = localStorage.getItem("token");
 if (token) {
-  store.dispatch(login(token));
+  store.dispatch(setToken(token));
 }
 
 const App = () => {

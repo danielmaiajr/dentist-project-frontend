@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import auth from "../auth/axios";
-
-import { login } from "../context/AuthSlice";
 import { useAppDispatch } from "../hooks";
 
 import { Label } from "@/components/ui/label";
@@ -11,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 
 import { cn } from "@/lib/utils";
+import { login } from "@/context/auth/auth.slice";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -20,9 +18,7 @@ const Login = () => {
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const response = await auth.login(email, password);
-
-    dispatch(login(response?.data?.token));
+    dispatch(login({ email, password }));
   };
 
   return (
