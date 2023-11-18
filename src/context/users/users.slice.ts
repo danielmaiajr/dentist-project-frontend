@@ -13,6 +13,7 @@ export interface UserState {
   id: Number;
   email: string;
   name: string;
+  role?: string;
 }
 
 export interface PostUserType {
