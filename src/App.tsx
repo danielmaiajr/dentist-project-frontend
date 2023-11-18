@@ -14,6 +14,7 @@ import "./index.css";
 import PatientPage from "./components/PatientPage.tsx";
 import SchedulerPage from "./components/SchedulerPage.tsx";
 import ConfigPage from "./components/pages/config/config.page.tsx";
+import PatientIdPage from "./components/pages/patient/patientId.page.tsx";
 
 const token = localStorage.getItem("token");
 if (token) {
@@ -32,7 +33,10 @@ const App = () => {
       {/* private routes */}
       <Route element={<RequireAuth />}>
         <Route path="/" element={<Home />}>
-          <Route path="/patients" element={<PatientPage />}></Route>
+          <Route path="/patients">
+            <Route index element={<PatientPage />}></Route>
+            <Route path=":patientId" element={<PatientIdPage />}></Route>
+          </Route>
           <Route path="/scheduler" element={<SchedulerPage />}></Route>
           <Route path="/config" element={<ConfigPage />}></Route>
         </Route>
