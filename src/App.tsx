@@ -13,9 +13,7 @@ import { setToken } from "./context/auth/auth.slice.ts";
 import "./index.css";
 import PatientPage from "./components/PatientPage.tsx";
 import SchedulerPage from "./components/SchedulerPage.tsx";
-import ConfigPage from "./components/ConfigPage.tsx";
-import InsurancePage from "./components/InsurancePage.tsx";
-import ClinicPage from "./components/ClinicPage.tsx";
+import ConfigPage from "./components/pages/config/config.page.tsx";
 
 const token = localStorage.getItem("token");
 if (token) {
@@ -37,8 +35,6 @@ const App = () => {
           <Route path="/patients" element={<PatientPage />}></Route>
           <Route path="/scheduler" element={<SchedulerPage />}></Route>
           <Route path="/config" element={<ConfigPage />}></Route>
-          <Route path="/insurance" element={<InsurancePage />}></Route>
-          <Route path="/clinic" element={<ClinicPage />}></Route>
         </Route>
       </Route>
     </Routes>
