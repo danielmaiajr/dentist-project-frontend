@@ -153,13 +153,13 @@ const Clinic = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold tracking-tight mt-6">
-        Dados da clínica
-      </h2>
-      <Separator className="my-5" />
+      <h2 className="text-xl font-semibold mt-8 mb-2">Dados da clínica</h2>
+
       <div className="grid grid-cols-3 gap-5 w-full mb-2">
         <div className="col-span-2 space-y-1">
-          <Label htmlFor="text">Nome da Clínica</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Nome da Clínica
+          </Label>
           <Input
             id="text"
             name="name"
@@ -168,7 +168,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">CNPJ</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            CNPJ
+          </Label>
           <Input
             id="text"
             name="cpnj"
@@ -178,7 +180,9 @@ const Clinic = () => {
         </div>
       </div>
       <div className="space-y-1">
-        <Label htmlFor="text">Responsável pela clínica</Label>
+        <Label className="text-xs text-muted-foreground" htmlFor="text">
+          Responsável pela clínica
+        </Label>
         <Input
           id="text"
           name="responsible"
@@ -187,17 +191,21 @@ const Clinic = () => {
         />
       </div>
 
-      <h2 className="text-2xl font-semibold tracking-tight my-3">
+      <h2 className="text-xl font-semibold mt-8 mb-2">
         Informações da clínica
       </h2>
-      <Separator className="my-5" />
+
       <div className="grid grid-cols-3 gap-5 w-full mb-2">
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Email</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Email
+          </Label>
           <Input disabled id="text" name="email" value={clinic.email} />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Telefone</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Telefone
+          </Label>
           <Input
             id="text"
             name="phone"
@@ -206,7 +214,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Celular</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Celular
+          </Label>
           <Input
             id="text"
             name="celphone"
@@ -216,13 +226,13 @@ const Clinic = () => {
         </div>
       </div>
 
-      <h2 className="text-2xl font-semibold tracking-tight my-3">
-        Localização
-      </h2>
-      <Separator className="my-5" />
+      <h2 className="text-xl font-semibold mt-8 mb-2">Localização</h2>
+
       <div className="grid grid-cols-6 gap-5 w-full mb-2">
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">CEP</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            CEP
+          </Label>
           <Input
             id="text"
             name="cep"
@@ -231,7 +241,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-2 space-y-1">
-          <Label htmlFor="text">Rua</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Rua
+          </Label>
           <Input
             id="text"
             name="street"
@@ -240,7 +252,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Número</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Número
+          </Label>
           <Input
             id="text"
             name="number"
@@ -249,7 +263,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-2 space-y-1">
-          <Label htmlFor="text">Complemento</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Complemento
+          </Label>
           <Input
             id="text"
             name="complement"
@@ -260,7 +276,9 @@ const Clinic = () => {
       </div>
       <div className="grid grid-cols-3 gap-5 w-full mb-2">
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Bairro</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Bairro
+          </Label>
           <Input
             id="text"
             name="neighborhood"
@@ -269,7 +287,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Cidade</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Cidade
+          </Label>
           <Input
             id="text"
             name="city"
@@ -278,7 +298,9 @@ const Clinic = () => {
           />
         </div>
         <div className="col-span-1 space-y-1">
-          <Label htmlFor="text">Estado</Label>
+          <Label className="text-xs text-muted-foreground" htmlFor="text">
+            Estado
+          </Label>
           <Input
             id="text"
             name="state"

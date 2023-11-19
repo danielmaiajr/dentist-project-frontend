@@ -65,8 +65,8 @@ const ConfigPage = () => {
 
         <TabsContent value="team" className="w-full">
           <div className="flex items-center">
-            <div>
-              <h1 className="text-2xl font-semibold mt-6">Membros da Equipe</h1>
+            <div className="my-6">
+              <h1 className="text-2xl font-semibold">Membros da Equipe</h1>
               <p className="text-sm text-muted-foreground">
                 Convide profissionais para colaborar
               </p>
@@ -134,7 +134,6 @@ const ConfigPage = () => {
             </Dialog>
           </div>
 
-          <Separator className="my-6" />
           <div className="w-full grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 md:gap-3 ">
             {users.map((u) => (
               <Card key={String(u.id)} className="flex items-center p-6">
@@ -160,8 +159,8 @@ const ConfigPage = () => {
 
         <TabsContent value="insurance">
           <div className="flex items-center">
-            <div>
-              <h1 className="text-2xl font-semibold tracking-tight mt-6">
+            <div className="my-6">
+              <h1 className="text-2xl font-semibold tracking-tight">
                 Planos Odontológicos
               </h1>
               <p className="text-sm text-muted-foreground">Lista de Planos</p>
@@ -228,7 +227,7 @@ const ConfigPage = () => {
               </DialogContent>
             </Dialog>
           </div>
-          <Separator className="my-6" />
+
           <div className="w-full grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-5 md:gap-3 ">
             {insurances.map((i) => (
               <Card key={String(i.id)} className="flex items-center p-6">
