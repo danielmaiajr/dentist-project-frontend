@@ -9,13 +9,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { LogOut, Pencil } from "lucide-react";
+import { LogOut, Pencil, Home, ChevronRight } from "lucide-react";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { logout } from "@/context/auth/auth.slice";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 export const NavBar = ({ title }: { title: string }) => {
+  const location = useLocation();
+
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
 
@@ -26,9 +29,11 @@ export const NavBar = ({ title }: { title: string }) => {
   };
 
   return (
-    <div className="flex h-12 px-5 border-b">
-      <div className="flex items-center space-x-4 font-medium px-4">
-        {title}
+    <div className="flex px-8 py-3 border-b">
+      <div className="flex items-center space-x-2 text-sm px-4">
+        <Home className="h-3.5 w-3.5" />
+        <ChevronRight className="h-4 w-4" />
+        <div>{title}</div>
       </div>
       <div className="ml-auto flex items-center space-x-4">
         <div className="flex items-center space-x-4 font-medium">
