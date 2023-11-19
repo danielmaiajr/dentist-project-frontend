@@ -41,10 +41,10 @@ const Home = () => {
 
   return (
     <div>
-      <NavBar title={title} />
       <div className="grid lg:grid-cols-5 xl:grid-cols-6 h-full">
         <Sidebar />
         <div className="lg:col-span-4 xl:col-span-5">
+          <NavBar title={title} />
           <Outlet />
         </div>
       </div>
