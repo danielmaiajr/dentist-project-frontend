@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
+import { Link } from "react-router-dom";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import {
@@ -74,7 +75,14 @@ const columns: ColumnDef<PatientType>[] = [
     accessorKey: "name",
     header: "Nome",
     cell: ({ row }) => (
-      <div className="flex space-x-2 font-medium">{row.getValue("name")}</div>
+      <div className="flex">
+        <Link
+          to={`/patients/${row.getValue("id")}`}
+          className="font-medium hover:underline"
+        >
+          {row.getValue("name")}
+        </Link>
+      </div>
     ),
   },
   {
@@ -104,7 +112,7 @@ function DataTable<TData, TValue>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="h-8">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -208,8 +216,8 @@ const PatientPage = () => {
 
   return (
     <div className="w-full px-12 py-8">
-      <div className="w-full flex">
-        <div>
+      <div className="w-full flex ">
+        <div className="mb-8">
           <h1 className="text-2xl font-semibold tracking-tight">Pacientes</h1>
           <p className="text-sm text-muted-foreground">Lista de Pacientes</p>
         </div>
@@ -246,8 +254,6 @@ const PatientPage = () => {
           </DialogContent>
         </Dialog>
       </div>
-
-      <Separator className="my-5" />
 
       <DataTable columns={columns} data={patients} />
     </div>
