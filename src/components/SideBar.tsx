@@ -13,51 +13,96 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="pt-12 hidden lg:block border-r h-screen">
-      <div className="space-y-4 py-4">
-        <div className="px-5 py-2">
-          <h2 className="my-2 px-4 text-lg font-semibold tracking-tight">
-            Clínica
-          </h2>
-          <div className="space-y-1">
-            <Link
-              to="/patients"
-              className={cn(
-                buttonVariants({
-                  variant: getButtonVariant("/patients"),
-                }),
-                "w-full justify-start"
-              )}
-            >
-              <Users className="mr-2 h-4 w-4" />
-              Pacientes
-            </Link>
-            <Link
-              to="/scheduler"
-              className={cn(
-                buttonVariants({
-                  variant: getButtonVariant("/scheduler"),
-                }),
-                "w-full justify-start"
-              )}
-            >
-              <Calendar className="mr-2 h-4 w-4" />
-              Agenda
-            </Link>
+    <div className="hidden lg:block border-r h-screen">
+      <div className="px-5">
+        <h2 className="m-4 text-lg font-semibold tracking-tight">Logo</h2>
+        <div className="space-y-1">
+          <Link
+            to="/home"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/home"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Users className="mr-4 h-4 w-4" />
+            Início
+          </Link>
+          <Link
+            to="/patients"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/patients"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Users className="mr-4 h-4 w-4" />
+            Pacientes
+          </Link>
+          <Link
+            to="/scheduler"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/scheduler"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Calendar className="mr-4 h-4 w-4" />
+            Agenda
+          </Link>
 
-            <Link
-              to="/config"
-              className={cn(
-                buttonVariants({
-                  variant: getButtonVariant("/config"),
-                }),
-                "w-full justify-start"
-              )}
-            >
-              <Settings2 className="mr-2 h-4 w-4" />
-              Configurações
-            </Link>
-          </div>
+          <Link
+            to="/config"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/config"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Settings2 className="mr-4 h-4 w-4" />
+            Orçamentos
+          </Link>
+          <Link
+            to="/config"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/config"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Settings2 className="mr-4 h-4 w-4" />
+            Prótese
+          </Link>
+          <Link
+            to="/config"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/config"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Settings2 className="mr-4 h-4 w-4" />
+            Financeiro
+          </Link>
+
+          <Link
+            to="/config"
+            className={cn(
+              buttonVariants({
+                variant: getButtonVariant("/config"),
+              }),
+              "w-full justify-start"
+            )}
+          >
+            <Settings2 className="mr-4 h-4 w-4" />
+            Configurações
+          </Link>
         </div>
       </div>
     </div>
